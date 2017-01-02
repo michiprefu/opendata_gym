@@ -15,6 +15,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from datasets_handler.views import DatasetsHandler
+
 urlpatterns = [
+    url(r'api/datasets/(?P<dataset_folder>[\w]+)/(?P<dataset_name>[\w]+)/$',
+        DatasetsHandler.as_view({'get': 'get'})),
+
     url(r'^admin/', include(admin.site.urls)),
 ]
