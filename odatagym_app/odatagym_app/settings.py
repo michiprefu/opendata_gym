@@ -118,3 +118,5 @@ SESSION_COOKIE_NAME = 'odata_gym'
 
 # custom settings
 DATASETS_DIR = 'static/datasets/'
+
+GOOGLE_API_KEY = ''
