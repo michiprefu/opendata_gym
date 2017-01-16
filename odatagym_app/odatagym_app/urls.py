@@ -18,11 +18,14 @@ from django.contrib import admin
 from datasets_handler.views import DatasetsHandler
 import examples.views as ex_views
 
+from odatagym_app import settings
+
 urlpatterns = [
     url(r'api/datasets/(?P<dataset_folder>[\w]+)/(?P<dataset_name>[\w-]+)/$',
         DatasetsHandler.as_view({'get': 'get'})),
 
     url(r'examples/sardinia_svg/', ex_views.get_sardinia_svg_example),
+    url(r'examples/sardinia_drugstores/', ex_views.get_sardinia_drugstores),
 
     url(r'^admin/', include(admin.site.urls)),
 ]

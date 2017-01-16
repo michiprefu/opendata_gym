@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>OpenData Gym</title>
+
+        <base href="/" />
+
+        {% include 'stylesheets.html' %}
+
+        <style>
+            #map {
+                height: 100%;
+            }
+
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="map"></div>
+
+        {% include 'javascripts.html' %}
+
+        <script>
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 9,
+                    center: {lat: 40.0835071, lng: 9.0853008},
+                    mapTypeId: 'roadmap'
+                });
+
+                $.get({
+                    url: 'http://localhost:8000/api/datasets/sardinia/farmacie/',
+                    data: {'file_delimiter': 'sc'},
+                    success: function(data) {
+                        for (var i=0; i<data.length; i++) {
+                            var m = new google.maps.Marker({
+                                position: {
+                                    lat: Number(data[i].LATITUDINE.replace(',', '.')),
+                                    lng: Number(data[i].LONGITUDINE.replace(',', '.'))
+                                },
+                                map: map
+                            });
+                        }
+                    }
+                })
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=visualization&callback=initMap"></script>
+    </body>
+</html>
