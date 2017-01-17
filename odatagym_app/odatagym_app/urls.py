@@ -26,6 +26,7 @@ urlpatterns = [
 
     url(r'examples/sardinia_svg/', ex_views.get_sardinia_svg_example),
     url(r'examples/sardinia_drugstores/', ex_views.get_sardinia_drugstores),
+    url(r'examples/rome_accidents/', ex_views.get_rome_accidents),
 
     url(r'^admin/', include(admin.site.urls)),
 ]

@@ -10,3 +10,8 @@ def get_sardinia_svg_example(request):
 def get_sardinia_drugstores(request):
     return render(request, 'markers.html',
                   context={'google_api_key': GOOGLE_API_KEY})
+
+
+def get_rome_accidents(request):
+    return render(request, 'heatmap.html',
+                  context={'google_api_key': GOOGLE_API_KEY})
